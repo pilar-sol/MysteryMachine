@@ -11,7 +11,8 @@ app = Flask(__name__)
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Path to CSV file to store user data
-csv_file_path = os.path.join(os.path.expanduser("~"), "Desktop", "game_user_data.csv")
+csv_file_path = os.path.join(os.getcwd(), "game_user_data.csv")
+
 
 # Write header to CSV if file does not exist
 if not os.path.exists(csv_file_path):
