@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Mystery Adventure Game!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c2c2c; /* Dark background */
+            font-family: 'Cinzel', serif; /* Main font for titles */
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-family: 'Cinzel', serif; /* Font for the title */
+        }
+
+        .scenario-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .scenario {
+            background-color: #333; /* Darker background for better contrast */
+            border-radius: 15px;
+            padding: 20px;
+            width: 220px;
+            text-align: center;
+            font-family: 'EB Garamond', serif;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            color: white; /* Ensure text is white for contrast */
+        }
+
+        .scenario h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .scenario h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .scenario button {
+            background-color: #444; /* Slightly darker than the card */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+        }
+
+        .scenario button:hover {
+            background-color: #666;
+        }
+
+        .scenario p {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Mystery Machine!</h1>
+
+    <div class="scenario-container">
+        <!-- Scenario 1 -->
+        <div class="scenario">
+            <h2>Scenario 1</h2>
+            <h3>The Forest Path</h3>
+            <p>Scenario 1</p>
+            <button onclick="window.location.href='/scenario/1'">&#9658;</button>
+        </div>
+
+        <!-- Scenario 2 -->
+        <div class="scenario">
+            <h2>Scenario 2</h2>
+            <h3>The Mystery of the Hidden Treasure</h3>
+            <p>Scenario 2</p>
+            <button onclick="window.location.href='/scenario/2'">&#9658;</button>
+        </div>
+
+        <!-- Scenario 3 -->
+        <div class="scenario">
+            <h2>Scenario 3</h2>
+            <h3>Escape from the Wizard's Castle</h3>
+            <p>Scenario 3</p>
+            <button onclick="window.location.href='/scenario/3'">&#9658;</button>
+        </div>
+    </div>
+
+</body>
+</html>
