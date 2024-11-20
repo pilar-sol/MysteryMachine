@@ -3,10 +3,24 @@ import openai
 import os
 from openai.error import OpenAIError, RateLimitError
 from textblob import TextBlob
+import csv
+import datetime
 
 app = Flask(__name__)
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Path to CSV file to store user data
+csv_file_path = os.path.join(os.path.expanduser("~"), "Desktop", "game_user_data.csv")
+
+# Write header to CSV if file does not exist
+if not os.path.exists(csv_file_path):
+    with open(csv_file_path, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["First Name", "Last Initial", "Grade Level", "Start Time", "End Time"])
+
+# Store session data in-memory to track start time
+user_sessions = {}
 
 @app.route('/')
 def login():
@@ -17,6 +31,8 @@ def home():
     first_name = request.form['first_name']
     last_initial = request.form['last_initial']
     grade_level = request.form['grade_level']
+    start_time = datetime.datetime.now() #for csv
+    user_sessions[first_name + last_initial] = start_time  # Store start time for the user
     return render_template('home.html', first_name=first_name)
 
 @app.route('/scenario/<scenario_id>', methods=['GET', 'POST'])
@@ -84,6 +100,22 @@ def scenario(scenario_id):
 
 @app.route('/ending', methods=['GET'])
 def ending():
+    # Retrieve the user's session information
+    first_name = request.args.get('first_name')
+    last_initial = request.args.get('last_initial')
+    grade_level = request.args.get('grade_level')
+    end_time = datetime.datetime.now()
+
+    # Get the start time from the user session data
+    session_key = first_name + last_initial
+    start_time = user_sessions.get(session_key, None)
+
+    # Write the session data to CSV
+    if start_time:
+        with open(csv_file_path, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([first_name, last_initial, grade_level, start_time, end_time])
+
     return render_template('ending.html')
 
 if __name__ == '__main__':
